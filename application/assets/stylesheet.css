@@ -8,19 +8,32 @@ body {
   background-color:#f8f0e6;
   position: relative;
   height: 100%;
-  border: 3px solid;
-  border-color: red;
+  border: 1px;
+/*  border-color: /*red*/;*/
 }
 .header {
   height: 15%;
   width: 100%;
+  margin: 1px;
+  padding: 1px;
   position: relative;
   top: 0;
   left: 0;
   background-color: #4B9072;
   text-align: center;
-  color:rgb(7, 7, 7);
+/*  color:rgb(7, 7, 7);*/
   z-index: 1;
+  /*background-image: url('istockphoto-1284690585-170667a.jpg');*/
+  background-image: url('UCIMG-1372-1_crop1.jpg');
+  opacity: 1;
+  color: white;
+}
+
+#title{
+  text-transform: uppercase;
+  font-weight: bold;  
+}
+
 }
 
 /*.main{
@@ -70,7 +83,7 @@ body {
     border-bottom: 0px !important;
     background-color: #fafbfc;
     padding: 12px !important;
-    font-family: "system-ui";
+    font-family: Helvetica;
     display: flex !important;
     align-items: center;
     justify-content: center;
@@ -85,9 +98,11 @@ body {
 
 .tab1{
   color: darkred;
-  font-family: monospace;
+  font-family: Helvetica;
   display: flex;
   flex-flow: column wrap;
+  position: relative;
+  top: 50px;
 }
 
 .tab1_rows{
@@ -115,7 +130,10 @@ body {
   padding: 10px;
   box-shadow: 2px 2px 2px lightgrey;
   flex-basis: 40%;
+  text-align: center;
+  color: black;
 }
+
 
 #ingr{
   border-radius: 20px;

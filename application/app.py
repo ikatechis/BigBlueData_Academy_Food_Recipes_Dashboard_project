@@ -23,15 +23,19 @@ from dash.dependencies import Input, Output, State
 df_ing = pd.read_csv('../data/ingredient_data.csv')
 df_rec = pd.read_csv('../data/recipes_per_year.csv')
 
-colors = ['#8dd3c7','#ffffb3','#bebada','#fb8072','#80b1d3',
-          '#fdb462','#b3de69','#fccde5','#d9d9d9','#bc80bd','#ccebc5','#ffed6f']
+
+
 
 def make_sunburst(min_rec=100, max_rec=df_ing.counts.max()):
+    
+    colorz = ['#8dd3c7','#b3de69','#bebada','#fb8072','#80b1d3','#fdb462',
+              '#ffffb3','#fccde5','#d9d9d9','#bc80bd','#ccebc5','#ffed6f']
+
     
     sun = df_ing[(df_ing.counts >= min_rec) & (df_ing.counts <= max_rec)]
     fig = px.sunburst(sun, path=['food_group', 'food_subgroup', 'ingredients'],
                       values='counts', height=600, 
-                      color_discrete_sequence=colors,
+                      color_discrete_sequence=colorz,
                      )
     fig.update_layout(
                         {'plot_bgcolor': 'rgba(0, 0, 0, 0)', 
@@ -58,9 +62,9 @@ sun_slider = dcc.RangeSlider(
             int(f'{df_ing["counts"].max()}'): {'label': 'max'}
         }
         )
-colors = ['#8dd3c7','#ffffb3','#bebada','#fb8072','#80b1d3',
-          '#fdb462','#b3de69','#fccde5','#d9d9d9','#bc80bd',
-          '#ccebc5','#ffed6f']
+# colors = ['#8dd3c7','#ffffb3','#bebada','#fb8072','#80b1d3',
+#           '#fdb462','#b3de69','#fccde5','#d9d9d9','#bc80bd',
+#           '#ccebc5','#ffed6f']
 
 def make_funnel(min_rec=100, max_rec=df_ing.counts.max(), from_sun='ALL'):
     if from_sun == 'ALL':
@@ -124,7 +128,9 @@ def make_time_figs(dropped='rec'):
     
     if dropped == 'rec':
         fig = px.area(df_rec, x='year', y='nr_recipes', color_discrete_sequence=['#bc80bd'], template='ggplot2')
-        fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0}, yaxis_title='Number of Recipes', xaxis_title='Year')
+        fig.update_layout({'plot_bgcolor': 'rgba(0, 0, 0, 0)', 
+       'paper_bgcolor': 'rgba(0, 0, 0, 0)'},
+            margin={"r":0,"t":0,"l":0,"b":0}, yaxis_title='Number of Recipes', xaxis_title='Year')
         return fig
     
     elif dropped == 'ing':
@@ -158,7 +164,8 @@ def make_time_figs(dropped='rec'):
                     showlegend=False
                 )
             ])
-        fig.update_layout(
+        fig.update_layout({'plot_bgcolor': 'rgba(0, 0, 0, 0)', 
+       'paper_bgcolor': 'rgba(0, 0, 0, 0)'},
             xaxis_title='Year',
             yaxis_title='Number of Ingredients',
             title='Average number of Ingredients per Recipe',
@@ -197,7 +204,8 @@ def make_time_figs(dropped='rec'):
                     showlegend=False
                 )
             ])
-        fig.update_layout(
+        fig.update_layout({'plot_bgcolor': 'rgba(0, 0, 0, 0)', 
+       'paper_bgcolor': 'rgba(0, 0, 0, 0)'},
         xaxis_title='Year',
         yaxis_title='Calories',
         title='Median Calories per Recipe',
@@ -217,7 +225,8 @@ tab1 = html.Div([
    html.Div([ # row 1
        html.Div([dcc.Graph(id='sun-fig'), 
              sun_slider], id='sunburst'),
-       html.Div([dcc.Graph(id='funnel-fig'), 
+       html.Div([html.H3(id='fun-title', children="Most Common Ingregients"),
+                 dcc.Graph(id='funnel-fig'), 
              ], id='funnel')
        
        ]
