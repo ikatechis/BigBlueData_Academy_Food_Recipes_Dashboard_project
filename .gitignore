@@ -185,6 +185,8 @@ venv.bak/
 *.geojson
 *.html
 *.parquet
+*.tar
+*.gz
 
 # macos
 *.DS_Store
