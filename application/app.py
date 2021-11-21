@@ -19,13 +19,44 @@ from dash.dependencies import Input, Output, State
 
 
 # ------------------------------------------------------ GRAPHS ------------------------------------------------------
-
+# Define Global Variables
 df_ing = pd.read_csv('../data/ingredient_data.csv')
 df_rec = pd.read_csv('../data/recipes_per_year.csv')
 
+cuisine_opt = ['North American', 'Italian', 'European', 'Asian', 'South West Pacific', 'French', 'Indian', 
+               'Greek', 'Chinese', 'Mexican', 'Thai', 'German', 'Spanish', 'Middle Eastern', 'South American', 
+               'Japanese', 'Moroccan', 'Irish', 'African', 'Scandinavian', 'Scottish', 'Ontario', 'Russian', 
+               'Pacific Northwest', 'Vietnamese', 'Australian', 'Polish', 'Swedish', 'Korean', 'Swiss', 'Turkish', 
+               'Portuguese', 'Hungarian', 'South African', 'Persian', 'Filipino', 'Indonesian', 'English', 
+               'Egyptian', 'Szechuan', 'Puerto Rican', 'Ethiopian', 'Caribbean']
+
+time_of_day_opt = ['Lunch', 'Dinner', 'Snack', 'Breakfast', 'Brunch']
+
+menu_opt = ['Main Dish', 'Dessert', 'Side Dish', 'Appetizer', 'Salad', 'Finger Food']
+
+type_opt = ['Snack', 'Pasta', 'Stew', 'Cake', 'Cookies', 'Crock Pot', 'Pie', 'Bread', 'Beverage', 'Dip', 
+            'No Cook', 'Frozen', 'Cupcakes', 'Grill', 'Roast', 'Pizza', 'Steak', 'Sauce', 'Stir Fry', 'Deep Fry', 
+            'Broil/Grill', 'Soup', 'Sandwich', 'Burger']
+
+special_opt = ['Party', 'Weeknight', 'Gifts', 'Picnic', 'Romantic', 'Thanksgiving', 'Barbecue', 'Easter', 
+               'Christmas', 'Valentines Day', 'Wedding', 'Halloween', 'Camping', 'Birthday', 'New Years', 
+               'St Patricks Day', 'Mothers Day', 'April Fools Day']
+
+health_opt = ['Kid Friendly', 'Toddler Friendly', 'Baby Friendly', 'Sugar Free', 'Low Sugar', 'Low Sodium', 
+              'Low Protein', 'High Protein', 'Vegetarian', 'Vegan', 'No Meat', 'Low Fat', 'Low Saturated Fat', 
+              'Fat Free', 'Low Carb', 'Very Low Carb', 'Low Calorie', 'Lactose Free', 'High Calcium', 
+              'Healthy', 'Gluten Free', 'Egg Free', 'Diabetic Friendly', 'Low Cholesterol']
+
+other_opt = ['Light', 'Easy', 'Spicy', 'Served Hot', 'Served Cold', 'Summer', 'Fall', 'Winter', 'Spring', 
+             '< 60 Mins', '< 30 Mins', '< 4 Hours', '< 15 Mins', '> 1 Day', 'Kid Friendly', 'Toddler Friendly', 
+             'Baby Friendly', 'College', 'Comfort Food']
+
+rec = pd.read_csv('../data/cleaned_recipes_fotis.csv')
 
 
+a = pd.read_csv('../data/total_recipes_per_year_fotis.csv')
 
+# Functions
 def make_sunburst(min_rec=100, max_rec=df_ing.counts.max()):
     
     colorz = ['#8dd3c7','#b3de69','#bebada','#fb8072','#80b1d3','#fdb462',
