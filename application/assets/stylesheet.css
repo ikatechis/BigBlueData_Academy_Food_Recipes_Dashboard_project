@@ -97,7 +97,7 @@ body {
 }
 
 .tab1{
-  color: darkred;
+
   font-family: Helvetica;
   display: flex;
   flex-flow: column wrap;
@@ -111,7 +111,15 @@ body {
   align-items: left;
   display: inline-flex;
   flex-flow: row wrap;
+}
 
+.tab2{
+
+  font-family: Helvetica;
+  display: flex;
+  flex-flow: column wrap;
+  position: relative;
+  top: 50px;
 }
 
 #sunburst{
@@ -158,4 +166,72 @@ body {
   padding: 10px;
   box-shadow: 2px 2px 2px lightgrey;
   flex-basis: 46%;
+}
+
+#dropdowns-div{
+  border-radius: 20px;
+  background-color: #F9F9F8;
+  margin: 5px;
+  padding: 10px;
+  box-shadow: 2px 2px 2px lightgrey;
+}
+
+#top-top{
+  display: inline-flex;
+  flex-flow: row wrap;
+}
+
+#top-recipes-div{
+  border-radius: 20px;
+  background-color: #F9F9F8;
+  margin: 5px;
+  padding: 10px;
+  box-shadow: 2px 2px 2px lightgrey;
+  align-items: center;
+  display: inline-flex;
+  flex-flow: column wrap;
+  width: 50%;
+}
+
+/*#top{
+  flex-flow: column wrap;
+}
+#image{
+  flex-flow: column wrap;*/
+
+#text1{
+  border-radius: 20px;
+  background-color: #F9F9F8;
+  margin: 5px;
+  padding: 10px;
+  box-shadow: 2px 2px 2px lightgrey;
+  flex-flow: row wrap;
+  width: 45%;
+}
+
+#graphs-div{
+  display: inline-flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+#nutrients-div{
+  border-radius: 20px;
+  background-color: #F9F9F8;
+  margin: 5px;
+  padding: 10px;
+  box-shadow: 2px 2px 2px lightgrey;
+  flex-flow: row wrap;
+  width: 45%;
+}
+
+#rec-time-div{
+  border-radius: 20px;
+  background-color: #F9F9F8;
+  margin: 5px;
+  padding: 10px;
+  box-shadow: 2px 2px 2px lightgrey;
+  flex-flow: row wrap;
+  width: 49%;
 }
