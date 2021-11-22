@@ -12,11 +12,8 @@ import plotly.graph_objects as go
 
 import dash
 from dash import dcc
-import dash_bootstrap_components as dbc
 from dash import html
-external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
-from dash.dependencies import Input, Output, State
-from skimage import io
+from dash.dependencies import Input, Output
 
 
 
@@ -53,6 +50,7 @@ other_opt = ['Light', 'Easy', 'Spicy', 'Served Hot', 'Served Cold', 'Summer', 'F
              '< 60 Mins', '< 30 Mins', '< 4 Hours', '< 15 Mins', '> 1 Day', 'College', 'Comfort Food']
 
 rec = pd.read_csv('../data/cleaned_recipes_fotis.csv')
+# rec = pd.read_parquet('../data/recipes_cleaned.parquet')
 
 
 a = pd.read_csv('../data/total_recipes_per_year_fotis.csv')
@@ -156,7 +154,6 @@ def make_ingr(from_sun='ALL'):
     return fig
 
 def make_time_figs(dropped='rec'):
-    print('HEEEEEERE')
     
     if dropped == 'rec':
         fig = px.area(df_rec, x='year', y='nr_recipes', color_discrete_sequence=['#bc80bd'], template='ggplot2')
@@ -249,8 +246,6 @@ def make_time_figs(dropped='rec'):
 markdown_text = '''
 ### An Interactive Dashboard
 '''
-
-
 
 tab1 = html.Div([
      
@@ -381,6 +376,7 @@ tab2 = html.Div(className='tab2', children=[
 app = dash.Dash(__name__)
 app.title = 'Recipes Dashboard'
 app._favicon = ("burger.ico")
+server = app.server
 
 app.layout = html.Div(id='main', children=[
     
@@ -499,7 +495,7 @@ def update_time(value):
      dash.dependencies.Input('multi_dropdown6', 'value'),
      dash.dependencies.Input('multi_dropdown7', 'value')])
 def text_from_multi_dropdown(md1,md2,md3,md4,md5,md6,md7):
-    mask=pd.Series(np.ones(494949), dtype=bool) # Reset to all True mask
+    mask=pd.Series(np.ones(rec.shape[0]), dtype=bool) # Reset to all True mask
     if md1 != []:
         mask *= rec.new_tags.str.contains('|'.join(md1),na=False) #  means 'or'
     if md2 != []:
